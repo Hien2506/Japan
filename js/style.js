@@ -13,7 +13,6 @@ $(document).ready(function () {
   });
 
 
-
   $('.slider-cer').slick({
     dots: false,
     infinite: true,
@@ -34,6 +33,65 @@ $(document).ready(function () {
         breakpoint: 768,
         settings: {
           slidesToShow: 2
+        }
+      }
+    ]
+  });
+
+
+  // slider sản phẩm
+  $('.featured-wrapper .list-featured').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    infinite: true,
+    prevArrow: '.btn-prev',
+    nextArrow: '.btn-next',
+    responsive: [
+      {
+        breakpoint: 996,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+
+
+  $('.featured-wrapper .list-featured-2').slick({
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    rows: 3,
+    slidesPerRow: 1,
+    infinite: true,
+    prevArrow: '.btn-prev-2',
+    nextArrow: '.btn-next-2',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
         }
       }
     ]
@@ -61,18 +119,23 @@ $(document).ready(function () {
   let hasAnimated = false;
 
   $(window).on('scroll', function () {
-    const sectionTop = $('.wd-stats-section').offset().top;
-    const scrollTop = $(window).scrollTop();
-    const windowHeight = $(window).height();
+    const $statsSection = $('.wd-stats-section');
 
-    if (!hasAnimated && scrollTop + windowHeight > sectionTop + 100) {
-      $('.wd-stats-number').each(function () {
-        const $this = $(this);
-        const target = parseInt($this.attr('data-target'));
-        animateCounter($this, target);
-      });
-      hasAnimated = true;
+    if ($statsSection.length > 0) {
+      const sectionTop = $statsSection.offset().top;
+      const scrollTop = $(window).scrollTop();
+      const windowHeight = $(window).height();
+
+      if (!hasAnimated && scrollTop + windowHeight > sectionTop + 100) {
+        $('.wd-stats-number').each(function () {
+          const $this = $(this);
+          const target = parseInt($this.attr('data-target'));
+          animateCounter($this, target);
+        });
+        hasAnimated = true;
+      }
     }
   });
 });
+
 
